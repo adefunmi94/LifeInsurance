@@ -8,9 +8,12 @@
 		<version>2.1.13.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
+	
 	<groupId>com.oldmutualnigeria</groupId>
 	<artifactId>lifeinsurance</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
 	<name>lifeinsurance</name>
 	<description>Oldmutual life sum assured</description>
 

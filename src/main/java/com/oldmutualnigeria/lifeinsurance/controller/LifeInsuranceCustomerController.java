@@ -1,5 +1,19 @@
-package com.oldmutualnigeria.lifeinsurance.controller;
-
-public class LifeInsuranceCustomerController {
-
-}
+//package com.oldmutualnigeria.lifeinsurance.controller;
+//
+//import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.GetMapping;
+//
+//@Controller
+//public class LifeInsuranceCustomerController {
+//	
+////	create mapping for "/hello"
+//	
+//	@GetMapping("/hello")
+//	public String sayHello(Model theModel) {
+//		theModel.addAttribute("theDate", new java.util.Date());
+//		
+//		
+//		 return "Hello-world";
+//	}
+//}
