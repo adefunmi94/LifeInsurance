@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 import com.oldmutualnigeria.lifeinsurance.service.PaymentFrequency;
 
 @Entity
-@Table(name="lifeAssured")
+@Table(name="lifeinsurance")
 public class LifeInsuranceCustomer {
 	
 	@Id
@@ -20,7 +20,7 @@ public class LifeInsuranceCustomer {
 	private int id;
 	
 	@NotBlank(message= "required")
-	@Column(name="customer-name")
+	@Column(name="customer_name")
 	private String name;
 	
 	@NotBlank(message= "required")
@@ -44,13 +44,15 @@ public class LifeInsuranceCustomer {
 	private int dayOfBirth;
 	
 	@NotBlank(message= "required")
-	@Column(name="sum-assured")
+	@Column(name="amount_assured")
 	private int sumAssured;
 	
 	@NotBlank(message= "required")
-	@Column(name="term-cover")
+	@Column(name="term_cover")
 	private int termOfCover;
 	
+	@NotBlank
+	@Column(name="paymentFrequency")
 	private PaymentFrequency paymentFrequency;
 
 	public LifeInsuranceCustomer(){}

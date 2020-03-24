@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Home</title>
+</head>
+<body>
+ <h2 th:text="#{app.title}">Sum Assured</h2>
+    <table>
+        <thead>
+         <tr>
+           <th>Name</th>
+           <th>Phone Number</th>
+           <th>Gender</th>
+           <th>Day of Birth</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="user : ${users}">
+             <td th:text="${user.id}">Id</td>
+             <td th:text="${user.name}">Name</td>
+          </tr>
+        </tbody>
+    </table>
+ </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form action="#" th:action="@{/addLifeCustomer}" th:object="${lifeassured}" method="post">
+  
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    
+    <label for="phone">Phone No</label>
+    <input type="text" th:field="*{phone}" id="phone" placeholder="Phone No">
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{phone}"></span>
+    
+    
+    
+    <label for="phone">Phone No</label>
+    <input type="text" th:field="*{phone}" id="phone" placeholder="Phone No">
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{phone}"></span>
+    
+    
+    <input type="submit" value="AddCustomer">   
+</form>

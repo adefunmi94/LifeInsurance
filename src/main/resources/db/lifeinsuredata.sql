@@ -1,0 +1,1 @@
+INSERT INTO 'lifeinsurance_database'.'lifeinsurance' (id, customer_name, phone, gender, yearOfBirth,monthOfBirth, dayOfBirth,term_cover,paymentFrequency) VALUES ('2','Ifeoluwa','08067349020','female','1990','11','23','10','monthly');
