@@ -21,3 +21,6 @@ CREATE TABLE lifeinsurance (
     PRIMARY KEY (id)  
     
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET= latin1;
+
+INSERT INTO `lifeinsurance` VALUES
+ (2,'Ifeoluwa',07039,'female',1990,11,24,10,'monthly');
