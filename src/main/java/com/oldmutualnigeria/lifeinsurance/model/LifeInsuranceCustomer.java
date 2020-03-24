@@ -30,7 +30,11 @@ public class LifeInsuranceCustomer {
 	@NotBlank(message= "required")
 	@Column(name="gender")
 	private String gender;
-	
+
+	private String escalation;
+
+	private String cashBack;
+
 	@NotBlank(message= "required")
 	@Column(name="yearOfBirth")
 	private int yearOfBirth;
@@ -42,10 +46,12 @@ public class LifeInsuranceCustomer {
 	@NotBlank(message= "required")
 	@Column(name="dayOfBirth")
 	private int dayOfBirth;
+
+	private Integer Age;
 	
 	@NotBlank(message= "required")
 	@Column(name="sum-assured")
-	private int sumAssured;
+	private Integer sumAssured;
 	
 	@NotBlank(message= "required")
 	@Column(name="term-cover")
@@ -125,11 +131,11 @@ public class LifeInsuranceCustomer {
 		this.dayOfBirth = dayOfBirth;
 	}
 
-	public int getSumAssured() {
+	public Integer getSumAssured() {
 		return sumAssured;
 	}
 
-	public void setSumAssured(int sumAssured) {
+	public void setSumAssured(Integer sumAssured) {
 		this.sumAssured = sumAssured;
 	}
 
@@ -148,6 +154,29 @@ public class LifeInsuranceCustomer {
 	public void setPaymentFrequency(PaymentFrequency paymentFrequency) {
 		this.paymentFrequency = paymentFrequency;
 	}
+
+	public String getCashBack() { return cashBack; }
+
+	public void setCashBack(String cashBack) {
+		this.cashBack = cashBack;
+	}
+
+	public Integer getAge() {return Age; }
+
+	public void setAge(Integer age){
+		this.Age = age;
+	}
+
+	//Funmi please implement this method to calculate age based on the date of birth
+	private void calculateAge() {
+
+		return;
+	}
+
+	public String getEscalation() {	return escalation; }
+
+	public void setEscalation(String escalation) {this.escalation = escalation; }
+
 
 	@Override
 	public String toString() {

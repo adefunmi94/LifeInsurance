@@ -1,7 +1,9 @@
 package com.oldmutualnigeria.lifeinsurance.service;
 
+import com.oldmutualnigeria.lifeinsurance.model.LifeInsuranceCustomer;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellAddress;
+import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Component;
 
@@ -127,4 +129,35 @@ public class ReadExcelFileService {
 //        System.out.println(row.getCell(cellAddress.getColumn()));
         return data;
     }
+
+    public Object findValueInRows(int sheetIndex, int cellIndex, Object searchkey) throws IOException {
+
+        Sheet sheet = getWorkbook().getSheetAt(sheetIndex);
+
+        for(Row row : sheet){
+
+            if(row.getCell(cellIndex).getStringCellValue().equals(searchkey)){
+
+                return (Integer)row.getRowNum()+1;
+            }
+
+        }
+
+        return null;
+    }
+
+    public Object getCellValueByRowNum(Integer rowNum, Integer cellNum, Integer sheetIndex) throws IOException {
+
+        Sheet sheet = getWorkbook().getSheetAt(sheetIndex);
+
+        Row row = sheet.getRow(rowNum - 1);
+
+        Cell cell = row.getCell(cellNum);
+
+        Object result = getSingleCellValue(cell.getAddress().toString(),1 );
+
+        return result;
+    }
+
+
 }
