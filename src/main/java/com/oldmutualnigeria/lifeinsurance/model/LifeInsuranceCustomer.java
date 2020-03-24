@@ -21,15 +21,15 @@ public class LifeInsuranceCustomer {
 	
 	@NotBlank(message= "required")
 	@Column(name="customer-name")
-	private Spring name;
+	private String name;
 	
 	@NotBlank(message= "required")
 	@Column(name="phone")
-	private Spring phone;
+	private String phone;
 	
 	@NotBlank(message= "required")
 	@Column(name="gender")
-	private Spring gender;
+	private String gender;
 	
 	@NotBlank(message= "required")
 	@Column(name="yearOfBirth")
@@ -52,8 +52,10 @@ public class LifeInsuranceCustomer {
 	private int termOfCover;
 	
 	private PaymentFrequency paymentFrequency;
+
+	public LifeInsuranceCustomer(){}
 	
-	public LifeInsuranceCustomer(int id, Spring name, Spring phone, Spring gender, int yearOfBirth, int monthOfBirth,
+	public LifeInsuranceCustomer(int id, String name, String phone, String gender, int yearOfBirth, int monthOfBirth,
 			int dayOfBirth, int sumAssured, int termOfCover, PaymentFrequency paymentFrequency) {
 		this.id = id;
 		this.name = name;
@@ -75,27 +77,27 @@ public class LifeInsuranceCustomer {
 		this.id = id;
 	}
 
-	public Spring getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(Spring name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public Spring getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Spring phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public Spring getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(Spring gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 

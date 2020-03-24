@@ -16,119 +16,115 @@ import java.util.Map;
 
 
 
-//@Component
+@Component
 public class ReadExcelFileService {
 
-//    private String fileLocation;
-//
-//    public ReadExcelFileService(){
-//
-//    }
-//
-    public Map<Integer, List<String>> readJExcel(String fileLocation)
-            throws IOException {
+    private Workbook workbook;
 
-        Map<Integer, List<String>> data = new HashMap<>();
+    public void setWorkBook(String fileLocation) throws IOException {
 
         FileInputStream file = new FileInputStream(new File(fileLocation));
 
-        Workbook workbook = new XSSFWorkbook(file);
-
-        Sheet sheet = workbook.getSheetAt(0);
-
-        int i = 0;
-
-        for (Row row : sheet) {
-
-            for (Cell cell : row) {
-
-                data.put(i, new ArrayList<String>());
-
-                if (cell.getCellType() == CellType.FORMULA) {
-
-                    switch (cell.getCachedFormulaResultType()) {
-                        case BOOLEAN:
-                            System.out.println(cell.getBooleanCellValue());
-                            break;
-                        case NUMERIC:
-                            System.out.println(cell.getNumericCellValue());
-                            break;
-                        case STRING:
-                            System.out.println(cell.getRichStringCellValue());
-                            break;
-                    }
-                }
-                else{
-                        switch (cell.getCellType()) {
-                            case STRING:
-                                data.get((i)).add(cell.getRichStringCellValue().getString());
-                                break;
-                            case NUMERIC:
-                                data.get(i).add(cell.getNumericCellValue() + "\n");
-                                break;
-                            case BOOLEAN:
-                                data.get(i).add(cell.getBooleanCellValue() + "\n");
-                                break;
-                            case FORMULA:
-                                data.get(i).add(cell.getCellFormula() + "\n");
-                                break;
-                            default:
-                                data.get((i)).add(" ");
-                        }
-
-                    }
-//                System.out.println();
-                i++;
-            }
-
-        }
-        return data;
+        this.workbook = new XSSFWorkbook(file);
     }
 
-    public void printSingleCellValue(String fileLocation, String cellStringAddress) throws IOException {
+    public Workbook getWorkbook(){
 
-        FileInputStream file = new FileInputStream(new File(fileLocation));
+        return this.workbook;
+    }
 
-        Workbook workbook = new XSSFWorkbook(file);
 
-        Sheet sheet = workbook.getSheetAt(0);
+    public Object getSingleCellValue(String cellIndex, int sheetIndex) throws IOException {
 
-        CellAddress cellAddress = new CellAddress(cellStringAddress);
+        //cell value
+        Object cellValue = null;
+
+        Sheet sheet = workbook.getSheetAt(sheetIndex);
+
+        CellAddress cellAddress = new CellAddress(cellIndex);
 
         Row row = sheet.getRow(cellAddress.getRow());
 
         Cell cell = row.getCell(cellAddress.getColumn());
 
         if (cell.getCellType() == CellType.FORMULA) {
+
             switch (cell.getCachedFormulaResultType()) {
+
                 case BOOLEAN:
-                    System.out.println(cell.getBooleanCellValue());
+                    cellValue = cell.getBooleanCellValue();
                     break;
                 case NUMERIC:
-                    System.out.println(cell.getNumericCellValue());
+                    cellValue = cell.getNumericCellValue();
                     break;
                 case STRING:
-                    System.out.println(cell.getRichStringCellValue());
+                    cellValue = cell.getRichStringCellValue();
                     break;
             }
         }
         else{
             switch (cell.getCellType()) {
                 case STRING:
-                    System.out.println(cell.getRichStringCellValue().getString());
+                    cellValue = cell.getRichStringCellValue().getString();
                     break;
                 case NUMERIC:
-                    System.out.println(cell.getNumericCellValue() + "");
+                    cellValue = cell.getNumericCellValue();
                     break;
                 case BOOLEAN:
-                    System.out.println(cell.getBooleanCellValue() + "");
+                    cellValue = cell.getBooleanCellValue();
                     break;
-                case FORMULA:
-                    System.out.println(cell.getCellFormula() + "");
-                    break;
-//                default: data.get((i)).add(" ");
+
             }
         }
+
+        return  cellValue;
+    }
+
+    public Map<CellAddress, Object> readRowCellValues(int sheetIndex, int rowIdex){
+
+        Sheet sheet = getWorkbook().getSheetAt(sheetIndex);
+
+        Map<CellAddress, Object> data = new HashMap<>();
+
+        Row row = sheet.getRow(rowIdex);
+
+            for (Cell cell : row){
+
+                switch (cell.getCellType()) {
+
+                    case STRING:
+
+                        data.put(cell.getAddress(), cell.getStringCellValue());
+                        break;
+                    case NUMERIC:
+
+                        data.put(cell.getAddress(), cell.getNumericCellValue());
+                        break;
+                    case BOOLEAN:
+
+                        data.put(cell.getAddress(), cell.getBooleanCellValue());
+                        break;
+                    case FORMULA:
+                        switch (cell.getCachedFormulaResultType()) {
+                            case BOOLEAN:
+
+                                data.put(cell.getAddress(), cell.getBooleanCellValue());
+                                break;
+                            case NUMERIC:
+
+                                data.put(cell.getAddress(), cell.getNumericCellValue());
+                                break;
+                            case STRING:
+
+                                data.put(cell.getAddress(), cell.getStringCellValue());
+                                break;
+                        }
+                    default:
+                }
+
+
+            }
+//        System.out.println(row.getCell(cellAddress.getColumn()));
+        return data;
     }
 }
-
